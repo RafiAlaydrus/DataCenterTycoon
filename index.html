@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DC Tycoon">
+<meta name="theme-color" content="#04080b">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+<title>Data Center Tycoon</title>
+</head>
+<body>
+<div id="app">
+  <header id="hud">
+    <div class="cashrow"><div id="cash">$0</div><div id="inc">+$0/s</div></div>
+    <div class="bar" id="bPow"><div class="fill"></div><div class="lb"><span>⚡ POWER</span><b></b></div></div>
+    <div class="bar" id="bHeat"><div class="fill"></div><div class="lb"><span>🌡 HEAT</span><b></b></div></div>
+    <div class="bar" id="bComp"><div class="fill"></div><div class="lb"><span>🖥 COMPUTE</span><b></b></div></div>
+    <div class="wl w-red" id="wPow" hidden></div>
+    <div class="wl w-or" id="wHeat" hidden></div>
+    <button id="evt" hidden></button>
+  </header>
+
+  <div id="hall"></div>
+
+  <div id="buybar">
+    <button data-mode="1" class="on">×1</button><button data-mode="10">×10</button><button data-mode="max">MAX</button>
+  </div>
+
+  <main id="panels">
+    <section class="panel on" id="p-srv">
+      <div class="tapcard">
+        <button id="tapbtn"><b>⚡ DEPLOY MANUALLY</b><span id="tapval">+$1</span></button>
+        <button id="tapup" data-act="tapup"></button>
+      </div>
+      <div id="l-srv"></div>
+    </section>
+
+    <section class="panel" id="p-inf">
+      <h3>⚡ Power <small>capacity in kW</small></h3><div id="l-pow"></div>
+      <h3>❄ Cooling <small>capacity in kW of heat</small></h3><div id="l-cool"></div>
+    </section>
+
+    <section class="panel" id="p-con">
+      <h3>📜 Active contracts</h3><div id="con-act"></div>
+      <h3>📨 Client offers <small>max 3 · they expire</small></h3><div id="con-off"></div>
+    </section>
+
+    <section class="panel" id="p-res">
+      <div class="card" id="rphead"></div>
+      <div id="l-res"></div>
+    </section>
+
+    <section class="panel" id="p-ipo">
+      <div class="card">
+        <h2>📈 IPO</h2>
+        <p class="mu">Go public: reset the run but keep <b>Shares</b>. Every Share is <b>+5%</b> permanent income.</p>
+        <div class="kv"><span>Earned this run</span><b id="i-run"></b></div>
+        <div class="kv"><span>Shares owned</span><b id="i-sh"></b></div>
+        <div class="kv"><span>Current bonus</span><b id="i-bon"></b></div>
+        <div class="kv"><span>Shares gained now</span><b id="i-gain" class="neon"></b></div>
+        <div class="kv"><span>Bonus after IPO</span><b id="i-new"></b></div>
+        <div class="tbar"><i id="i-prog"></i></div>
+        <small class="mu" id="i-next"></small>
+        <button class="btn big" id="i-btn" data-act="ipo">GO PUBLIC</button>
+      </div>
+      <h3>🏆 Achievements <small id="a-cnt"></small></h3>
+      <div id="l-ach"></div>
+    </section>
+
+    <section class="panel" id="p-set">
+      <h3>⚙ Settings</h3>
+      <button class="btn" id="b-snd" data-act="snd"></button>
+      <button class="btn" data-act="exp">📤 Export save (copy text)</button>
+      <textarea id="sv-text" rows="4" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="Export fills this box. To restore, paste a save here and tap Import."></textarea>
+      <button class="btn" data-act="imp">📥 Import save from box</button>
+      <button class="btn danger" data-act="rst">🗑 Reset all progress</button>
+      <div id="dbg" hidden><button class="btn" data-act="cheat">🐞 +$1B (debug)</button></div>
+      <h3>Stats</h3>
+      <div class="card" id="stats"></div>
+    </section>
+  </main>
+
+  <nav id="tabs">
+    <button data-tab="srv" class="on"><span>🖥</span>Servers</button>
+    <button data-tab="inf"><span>⚡</span>Infra</button>
+    <button data-tab="con"><span>📜</span>Contracts<i class="dot" hidden></i></button>
+    <button data-tab="res"><span>🔬</span>Research<i class="dot" hidden></i></button>
+    <button data-tab="ipo"><span>📈</span>IPO<i class="dot" hidden></i></button>
+    <button data-tab="set"><span>⚙</span>Settings</button>
+  </nav>
+</div>
+
+<div id="fx"></div>
+<div id="toasts"></div>
+<div id="tut" hidden><p></p><button class="btn">Next</button></div>
+<div id="modal" hidden><div class="mbox"><h2></h2><div class="mbody"></div><button class="btn big">OK</button></div></div>
+<div id="dbgchip" hidden>DEBUG ×10</div>
+
+<script src="game.js"></script>
+</body>
+</html>
